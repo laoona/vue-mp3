@@ -1,0 +1,212 @@
+@charset "UTF-8";
+/* reset.css
+ * -----------------------------------------------------------------*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, header, footer, section, article, aside, nav, figure, figcaption {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  font-family: "Hiragino Sans GB", "Microsoft Yahei", "Helvetica";
+}
+
+html * {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+img {
+  max-width: 100%;
+  border: 0;
+  /*-webkit-touch-callout: none;*/
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* form-reset.css
+ * -----------------------------------------------------------------*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+a, input, textarea, button {
+  color: #333;
+  text-decoration: none;
+}
+
+input, button, textarea, select, optgroup, option {
+  font: 1rem "Hiragino Sans GB", "Microsoft Yahei", "Helvetica";
+}
+
+input[type="button"], input[type="text"], input[type="submit"], input[type="search"], input[type="tel"], input[type="number"], select, option, .appNone {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder, input::-moz-placeholder, textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* const.css
+ * -----------------------------------------------------------------*/
+.ico {
+  display: inline-block;
+  background-color: transparent;
+  background-repeat: no-repeat;
+}
+
+.VAM:after {
+  content: "";
+  display: inline-block;
+  overflow: hidden;
+  height: 100%;
+  width: 0;
+  font-size: 0;
+  vertical-align: middle;
+}
+
+.wbwr {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.clr:after, .clr:before {
+  content: "";
+  display: table;
+}
+
+.clr:after {
+  clear: both;
+}
+
+.fll {
+  float: left;
+}
+
+.flr {
+  float: right;
+}
+
+.vam {
+  vertical-align: middle;
+}
+
+.db {
+  display: block;
+}
+
+.dib {
+  display: inline-block;
+}
+
+.tar {
+  text-align: right;
+}
+
+.tac {
+  text-align: center;
+}
+
+.ovh {
+  overflow: hidden;
+}
+
+.vat {
+  vertical-align: top;
+}
+
+.ico {
+  font: normal normal normal 14px/1 "themicons";
+  font-size: 0.75rem;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: top;
+}
+
+.ico-menu::after {
+  content: "";
+}
+
+.ico-share::after {
+  content: "";
+}
+
+.ico-loop::after {
+  content: "";
+}
+
+.ico-pre::after {
+  content: "";
+}
+
+.ico-next::after {
+  content: "";
+}
+
+.ico-play::after {
+  content: "";
+}
+
+.ico-shuffle::after {
+  content: "";
+}
+
+.ico-m-list::after {
+  content: "";
+}
+
+.ico-search::after {
+  content: "";
+}
+
+.ico-back::after {
+  content: "";
+}
+
+.ico-close::after {
+  content: "";
+}
+
+.ico-music::after {
+  content: "";
+}
+
+.ico-pause::after {
+  content: "";
+}
+
+.ico-del::after {
+  content: "";
+}
+
+.ico-repeat::after {
+  content: "";
+}
+
+.ico-rand::after {
+  content: "";
+}
+
+.ico-time::after {
+  content: "";
+}
+
+
+/*# sourceMappingURL=base.css.map */
