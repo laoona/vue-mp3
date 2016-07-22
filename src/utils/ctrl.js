@@ -18,6 +18,7 @@ var ctrl = {
     , lsName: "__list__"
     , lsCurr: "__curr__"
     , lsMode: "__mode__"
+    , lsSHis: "__his__"
     , assign: function (target, arr) {
         if (typeof Object.assign !== 'function') {
             if (target === undefined || target === null) {

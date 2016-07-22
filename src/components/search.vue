@@ -5,12 +5,12 @@
                 <form @submit.prevent action onsubmit="return false;">
                     <header>
                         <div class="header-search">
-                            <button class="header-search-btn" type="button" v-touch:tap="formSubmit">
+                            <button class="header-search-btn" type="button" v-touch:tap="formSubmit(null)">
                                 <i class="ico ico-search"></i>
                             </button>
                             <input type="search" required class="header-search-field" v-model="sValue"
                                    value="{{ sValue }}"
-                                   autocomplete="off" placeholder="搜索音乐" @keyup.enter="formSubmit">
+                                   autocomplete="off" placeholder="搜索音乐" @keyup.enter="formSubmit(null)">
                             <button class="header-search-clear" type="button" v-touch:tap="clearSValue">
                                 <i class="ico ico-close"></i>
                             </button>
@@ -21,6 +21,7 @@
             </div>
 
             <div id="js-serachlist-scroll" class="search-page-scroll">
+                <search-history :search-history="searchHistory" v-show="!songLists.length && !isSearching && searchHistory.length"></search-history>
                 <ul class="search-items">
                     <li v-for="list in songLists" v-touch:tap="playMusic(list.id, $event)">
                         <i class="ico ico-music"></i>
@@ -51,6 +52,7 @@
     var IScroll = scroll.iScroll;
 
     import ctrl from '../utils/ctrl';
+    import SearchHistory from './search.history';
 
     export default {
         data () {
@@ -64,14 +66,19 @@
                 , sValue: ''
                 , songCount: 0
                 , isOver: false
+                , searchHistory: []
             };
         }
         , ready () {
             this.init();
+            this.searchHistory = JSON.parse(window.localStorage.getItem(ctrl.lsSHis)) || []
         }
         , watch: {
             songLists () {
                 this.scroll.refresh();
+            }
+            , searchHistory (val) {
+                window.localStorage.setItem(ctrl.lsSHis, JSON.stringify(val));
             }
         }
         , computed () {
@@ -83,11 +90,12 @@
                 (this.searchOpen = !this.searchOpen);
                 !this.searchOpen && (this.sValue = '', this.songLists = [], this.isOver = false);
             }
-            , formSubmit () {
+            , formSubmit (query) {
                 this.isSearching = true;
                 this.currPage = 1;
                 this.songCount = 0;
                 this.isOver = false;
+                query ? (this.sValue = query) : this.pushSearchHistory(this.sValue);
 
                 this.$http.get(ctrl.url + '/api/music/', {
                     params: {
@@ -170,9 +178,24 @@
             , playMusic (id) {
                 this.$dispatch('playMusic', id);
             }
-            , clearSValue: function () {
+            , clearSValue () {
                 this.sValue = "";
             }
+            , pushSearchHistory (query) {
+                var his = this.searchHistory;
+                var len = his.length;
+
+                len >= 20 && his.shift();
+                his.unshift(query);
+            }
+        }
+        , events: {
+            formSubmit (query) {
+                this.formSubmit(query);
+            }
+        }
+        , components: {
+            searchHistory: SearchHistory
         }
     };
 </script>
