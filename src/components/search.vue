@@ -21,8 +21,8 @@
             </div>
 
             <div id="js-serachlist-scroll" class="search-page-scroll">
-                <search-history :search-history="searchHistory" v-show="!songLists.length && !isSearching && searchHistory.length"></search-history>
                 <ul class="search-items">
+                    <search-history :search-history="searchHistory" v-show="!songLists.length && !isSearching && searchHistory.length"></search-history>
                     <li v-for="list in songLists" v-touch:tap="playMusic(list.id, $event)">
                         <i class="ico ico-music"></i>
                         <span class="play-list-song ">{{ list.name }}</span>

@@ -334,6 +334,7 @@
                 this.touchEnabled && (this.menuOpen = !this.menuOpen);
             }
             , toggleSearch () {
+                window.scroll(0, 0);
                 this.touchEnabled && (this.searchOpen = !this.searchOpen);
                 !this.searchOpen && (this.sValue = '', this.songLists = []);
             }

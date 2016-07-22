@@ -761,7 +761,7 @@ button .ico:active {
   font-size: 72px;
 }
 
-.search-items li {
+.search-items > li {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -777,55 +777,55 @@ button .ico:active {
   padding: 0 0.4375rem;
   font-size: 15px;
 }
-[data-dpr="2"] .search-items li {
+[data-dpr="2"] .search-items > li {
   font-size: 30px;
 }
-[data-dpr="2.5"] .search-items li {
+[data-dpr="2.5"] .search-items > li {
   font-size: 38px;
 }
-[data-dpr="2.75"] .search-items li {
+[data-dpr="2.75"] .search-items > li {
   font-size: 41px;
 }
-[data-dpr="3"] .search-items li {
+[data-dpr="3"] .search-items > li {
   font-size: 45px;
 }
-[data-dpr="4"] .search-items li {
+[data-dpr="4"] .search-items > li {
   font-size: 60px;
 }
-.search-items li .play-list-song {
+.search-items > li .play-list-song {
   color: white;
   margin-left: 0.15625rem;
 }
-.search-items li .play-list-line, .search-items li .play-list-singer, .search-items li .ico-music {
+.search-items > li .play-list-line, .search-items > li .play-list-singer, .search-items > li .ico-music {
   color: rgba(255, 255, 255, 0.8);
 }
-.search-items li .play-list-singer {
+.search-items > li .play-list-singer {
   position: absolute;
   top: 50%;
   right: 0.4375rem;
   margin-top: -0.1875rem;
   line-height: 1;
 }
-.search-items li .ico-music {
+.search-items > li .ico-music {
   vertical-align: middle;
   font-size: 18px;
 }
-[data-dpr="2"] .search-items li .ico-music {
+[data-dpr="2"] .search-items > li .ico-music {
   font-size: 36px;
 }
-[data-dpr="2.5"] .search-items li .ico-music {
+[data-dpr="2.5"] .search-items > li .ico-music {
   font-size: 45px;
 }
-[data-dpr="2.75"] .search-items li .ico-music {
+[data-dpr="2.75"] .search-items > li .ico-music {
   font-size: 50px;
 }
-[data-dpr="3"] .search-items li .ico-music {
+[data-dpr="3"] .search-items > li .ico-music {
   font-size: 54px;
 }
-[data-dpr="4"] .search-items li .ico-music {
+[data-dpr="4"] .search-items > li .ico-music {
   font-size: 72px;
 }
-.search-items li::after {
+.search-items > li::after {
   content: "";
   position: absolute;
   left: 0;
