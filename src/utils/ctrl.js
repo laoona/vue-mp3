@@ -80,7 +80,7 @@ var ctrl = {
         return res;
     }
     , url: 'http://192.168.10.240/'
-    , url: 'http://page.laoono.com'
+    // , url: 'http://page.laoono.com'
 };
 
 

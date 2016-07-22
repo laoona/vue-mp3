@@ -28,10 +28,16 @@
                         <span class="play-list-singer">{{ list.artists[0].name }}</span>
                     </li>
 
-                    <section class="ani-playing-box" v-bind:style="{visibility: isSearching ? 'visible' : 'hidden'}">
+                    <section v-if="!isOver" class="ani-playing-box" v-bind:style="{visibility: isSearching ? 'visible' : 'hidden'}">
                         <div class="ani-playing">
                             <span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>
                             <span class="ani-playing-txt">正在加载</span>
+                        </div>
+                    </section>
+                    <section v-else class="ani-playing-box">
+                        <div class="ani-playing">
+                            <span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>
+                            <span class="ani-playing-txt">数据没了</span>
                         </div>
                     </section>
                 </ul>
@@ -56,6 +62,8 @@
                 , scroll: null
                 , isSearching: false
                 , sValue: ''
+                , songCount: 0
+                , isOver: false
             };
         }
         , ready () {
@@ -66,15 +74,20 @@
                 this.scroll.refresh();
             }
         }
+        , computed () {
+
+        }
         , props: ['searchOpen']
         , methods: {
             toggleSearch: function () {
                 (this.searchOpen = !this.searchOpen);
-                !this.searchOpen && (this.sValue = '', this.songLists = []);
+                !this.searchOpen && (this.sValue = '', this.songLists = [], this.isOver = false);
             }
             , formSubmit () {
                 this.isSearching = true;
                 this.currPage = 1;
+                this.songCount = 0;
+                this.isOver = false;
 
                 this.$http.get(ctrl.url + '/api/music/', {
                     params: {
@@ -88,10 +101,14 @@
                     res = res || {};
 
                     var _data = JSON.parse(res.data) || {};
+                    this.songCount = _data.result.songCount;
+
                     _data = _data.result.songs || [];
 
                     this.songLists = _data;
                     this.isSearching = false;
+
+                    this.songCount == this.songLists.length && (this.isOver = true);
                 }, function (res) {
                     console.log(res, 'error');
                     this.isSearching = false;
@@ -117,6 +134,11 @@
 
                         if (_me.isSearching === true || !_me.searchOpen) return;
 
+                        if (_me.songCount == _me.songLists.length) {
+                            _me.isOver = true;
+                            return;
+                        }
+
                         var p = _me.currPage++;
                         _me.pages = p * _me.offset;
 
@@ -132,10 +154,13 @@
                             res = res || {};
 
                             var _data = JSON.parse(res.data) || {};
+                            _me.songCount = _data.result && _data.result.songCount;
+
                             _data = (_data.result && _data.result.songs) || [];
 
                             _me.songLists = _me.songLists.concat(_data);
                             _me.isSearching = false;
+                            _me.songCount == _me.songLists.length && (_me.isOver = true);
                         }, function (res) {
                             _me.isSearching = false;
                         });
