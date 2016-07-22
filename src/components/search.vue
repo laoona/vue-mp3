@@ -115,10 +115,10 @@
                             return;
                         }
 
+                        if (_me.isSearching === true || !_me.searchOpen) return;
+
                         var p = _me.currPage++;
                         _me.pages = p * _me.offset;
-
-                        if (_me.isSearching === true || !_me.searchOpen) return;
 
                         _me.isSearching = true;
 
