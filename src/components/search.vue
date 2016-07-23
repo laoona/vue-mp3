@@ -22,7 +22,7 @@
 
             <div id="js-serachlist-scroll" class="search-page-scroll">
                 <ul class="search-items">
-                    <search-history :search-history="searchHistory" v-show="!songLists.length && !isSearching && searchHistory.length"></search-history>
+                    <search-history :search-history.sync="searchHistory" v-show="!songLists.length && !isSearching && searchHistory.length"></search-history>
                     <li v-for="list in songLists" v-touch:tap="playMusic(list.id, $event)">
                         <i class="ico ico-music"></i>
                         <span class="play-list-song ">{{ list.name }}</span>
@@ -185,8 +185,9 @@
                 var his = this.searchHistory;
                 var len = his.length;
 
-                len >= 20 && his.shift();
-                his.unshift(query);
+                if (query.trim()) {
+                    len >= 20 && his.shift();
+                }
             }
         }
         , events: {
