@@ -135,8 +135,8 @@
                     , onScrollEnd: function () {
                         var scroll = _me.scroll;
 
-//                        console.log(scroll.y + ':' + height + ':' + scroll.scrollerH);
-                        if (!(Math.abs(scroll.y) + height + 10 >= scroll.scrollerH)) {
+                        console.log(scroll.y + ':' + height + ':' + scroll.scrollerH);
+                        if (!(Math.abs(scroll.y) + height + 10 >= scroll.scrollerH) || scroll.y == 0) {
                             return;
                         }
 
