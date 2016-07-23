@@ -37,7 +37,7 @@
                     </section>
                     <section v-else class="ani-playing-box">
                         <div class="ani-playing">
-                            <span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>
+                            <!--<span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>-->
                             <span class="ani-playing-txt">数据没了</span>
                         </div>
                     </section>
