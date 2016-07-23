@@ -187,6 +187,7 @@
 
                 if (query.trim()) {
                     len >= 20 && his.shift();
+                    his.unshift(query);
                 }
             }
         }

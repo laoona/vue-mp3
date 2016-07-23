@@ -99,7 +99,6 @@
             }
 
             , clean () {
-                console.log(1);
                 this.searchHistory = [];
             }
         }
