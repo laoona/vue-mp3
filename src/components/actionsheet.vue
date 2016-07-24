@@ -22,8 +22,20 @@
     </div>
 </template>
 <script>
+    import scroll from 'iScroll-4.2.5';
+
+    var IScroll = scroll.iScroll;
+
+
     export default {
         props: ['listOpen', 'playingLists']
+
+        , ready () {
+            new IScroll("js-playlist-scroll", {
+                vScrollbar: false,
+                checkDOMChanges: true
+            });
+        }
 
         , methods: {
             playMusic (id) {
