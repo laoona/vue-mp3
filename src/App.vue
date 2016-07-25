@@ -39,7 +39,7 @@
                     </button>
                 </div>
             </div>
-            <v-actionsheet :current-list-id="currId" :list-open.sync="listOpen" :playing-lists.sync="playingLists"></v-actionsheet>
+            <v-actionsheet :current-list-id="currId" :list-open.sync="listOpen" :playing-lists.sync="playingLists" :is-play="isPlay"></v-actionsheet>
         </div>
 
         <v-search :search-open.sync="searchOpen"></v-search>

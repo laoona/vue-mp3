@@ -10,7 +10,7 @@
                             <span class="play-list-song ">{{ list.title }}</span>
                             <b class="play-list-line">-</b>
                             <span class="play-list-singer">{{ list.artists }}</span>
-                            <span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>
+                            <span class="ani-playing-animation" v-show="isPlay"><b><i></i><i></i><i></i><i></i></b></span>
                         </div>
 
                         <button class="list-item-del" v-touch:tap="swipeDel($index)"><i class="ico ico-del"></i>
@@ -25,6 +25,9 @@
 <style scoped>
     .play-list-item-current .ani-playing-animation {
         display: inline-block;
+    }
+    .play-list-item-current .play-list-song {
+        color: #31c27c;
     }
     .ani-playing-animation {
         display: none;
@@ -42,7 +45,7 @@
 
 
     export default {
-        props: ['listOpen', 'playingLists', 'currentListId']
+        props: ['listOpen', 'playingLists', 'currentListId', 'isPlay']
 
         , ready () {
             new IScroll("js-playlist-scroll", {
