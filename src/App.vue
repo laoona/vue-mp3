@@ -61,6 +61,10 @@
     import Actionsheet from './components/actionsheet.vue';
     import Menu from './components/menu.vue';
 
+    import Toast from './components/toast.vue';
+
+    var toast = Toast.methods.init();
+
     export default {
         data () {
             return {
@@ -229,6 +233,10 @@
                     _me.isPlay = true;
                     _me.audio.autoplay = true;
                 });
+
+                this.audio.addEventListener("error", function (error) {
+                    toast.init("歌曲加载失败").destroy();
+                }, false);
             }
             , setProgress: function () {
                 var audio = this.audio;
