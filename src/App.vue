@@ -98,6 +98,21 @@
             setInterval(this.setProgress, 250);
             this.init();
             this.currMode = this.storage.getItem(ctrl.lsMode) || this.currMode;
+            var s = this.storage.getItem(ctrl.lsName)
+                    , i = 0
+                    , isCurr;
+
+            s = JSON.parse(s) || [];
+            var len = s.length;
+
+            for (i; i < len; i++) {
+                if (this.currId == s[i].id) {
+                    isCurr = true;
+                    break;
+                }
+            }
+
+            !isCurr && (this.currId = s[0].id);
         }
         , events: {
             playMusic (id) {
@@ -261,7 +276,6 @@
 
             , swipeDel: function (index) {
 
-                console.log(index);
                 var storage = this.storage
                         , lsName = ctrl.lsName
                         , tempList
