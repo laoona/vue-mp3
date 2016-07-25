@@ -120,6 +120,7 @@
         , methods: {
             setPlay () {
                 if (this.audio.readyState == 0) {
+                    toast.init("歌曲加载失败").destroy();
                     this.isPlay = false;
                     return;
                 }
