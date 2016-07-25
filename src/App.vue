@@ -39,8 +39,7 @@
                     </button>
                 </div>
             </div>
-
-            <v-actionsheet :list-open.sync="listOpen" :playing-lists.sync="playingLists"></v-actionsheet>
+            <v-actionsheet :current-list-id="currId" :list-open.sync="listOpen" :playing-lists.sync="playingLists"></v-actionsheet>
         </div>
 
         <v-search :search-open.sync="searchOpen"></v-search>
@@ -87,7 +86,7 @@
                 , isAnimationComplete: false
                 , isSwipe: false
                 , nextIndex: 0
-                , currId: 0
+                , currId: window.localStorage.getItem(ctrl.lsCurr) || ctrl.defaultMusic.id
                 , nextId: 0
                 , isSearching: false
                 , mode: ['loop', 'repeat', 'rand']

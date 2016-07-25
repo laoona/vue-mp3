@@ -42,12 +42,7 @@
 
 
     export default {
-        props: ['listOpen', 'playingLists']
-        , data () {
-            return {
-                currentListId: window.localStorage.getItem(ctrl.lsCurr) || 0
-            }
-        }
+        props: ['listOpen', 'playingLists', 'currentListId']
 
         , ready () {
             new IScroll("js-playlist-scroll", {
@@ -59,7 +54,6 @@
         , methods: {
             playMusic (id) {
                 this.$dispatch('playMusic', id);
-                this.currentListId = id;
             }
             , swipeDel (index) {
                 this.$dispatch('swipeDel', index);
