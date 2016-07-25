@@ -5,11 +5,12 @@
                     class="list-box-count js-playlist-num">({{ playingLists.length }}首)</span></h6>
             <div class="list-box-cont" id="js-playlist-scroll" style="overflow: scroll;">
                 <ul class="mod-play-list js-playlist-box">
-                    <li class="play-list-item-current" v-for="list in playingLists">
+                    <li v-for="list in playingLists" v-bind:class="{'play-list-item-current': currentListId == list.id}">
                         <div class="play-list-scroll" v-touch:tap="playMusic(list.id)">
                             <span class="play-list-song ">{{ list.title }}</span>
                             <b class="play-list-line">-</b>
                             <span class="play-list-singer">{{ list.artists }}</span>
+                            <span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>
                         </div>
 
                         <button class="list-item-del" v-touch:tap="swipeDel($index)"><i class="ico ico-del"></i>
@@ -21,7 +22,20 @@
         </div>
     </div>
 </template>
+<style scoped>
+    .play-list-item-current .ani-playing-animation {
+        display: inline-block;
+    }
+    .ani-playing-animation {
+        display: none;
+        margin-left: 0.15625rem;
+    }
+    .play-list-song, .play-list-singer {
+        max-width: 37%;
+    }
+</style>
 <script>
+    import ctrl from '../utils/ctrl';
     import scroll from 'iScroll-4.2.5';
 
     var IScroll = scroll.iScroll;
@@ -29,6 +43,11 @@
 
     export default {
         props: ['listOpen', 'playingLists']
+        , data () {
+            return {
+                currentListId: window.localStorage.getItem(ctrl.lsCurr) || 0
+            }
+        }
 
         , ready () {
             new IScroll("js-playlist-scroll", {
@@ -40,6 +59,7 @@
         , methods: {
             playMusic (id) {
                 this.$dispatch('playMusic', id);
+                this.currentListId = id;
             }
             , swipeDel (index) {
                 this.$dispatch('swipeDel', index);
