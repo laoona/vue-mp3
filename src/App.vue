@@ -285,6 +285,7 @@
                         , lsName = ctrl.lsName
                         , tempList
                         , lists = JSON.parse(storage.getItem(lsName))
+                        , id = lists[index].id
 
                         , changeList = lists.slice(0, index).concat(lists.slice(parseInt(index, 10) + 1));
 
@@ -292,6 +293,27 @@
 
                 tempList = JSON.parse(this.storage.getItem(lsName));
                 this.playingLists = tempList;
+
+                this.syncDel(id);
+            }
+            , syncDel (id) {
+                var url = ctrl.hgzUrl + '/api/delmp3';
+
+                this.$http.post(url, {
+                    id: id
+                }, {
+                    credentials: true
+                    , emulateJSON: true
+                }).then(function (res) {
+                    var code = res.data.code;
+
+                    if (code == 100) {
+                    } else {
+                        toast.init("删除失败").destroy();
+                    }
+                }, function (res) {
+                    toast.init("删除失败").destroy();
+                });
             }
             , getNext: function (id, sequence) {
                 var list = this.storage.getItem(ctrl.lsName)

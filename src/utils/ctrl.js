@@ -82,10 +82,10 @@ var ctrl = {
         return res;
     }
     , hgzUrl: 'http://www.haozigan.com'
-    , url: 'http://192.168.10.240/'
+    // , hgzUrl: 'http://haozigan.me'
+    // , url: 'http://192.168.10.240/'
     , url: 'http://page.laoono.com'
 };
-
 
 export default ctrl;
  
