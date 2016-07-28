@@ -1,10 +1,13 @@
 import Vue from 'vue';
-import App from './App';
 
 import VueResource from 'vue-resource';
 import VueTouch from 'vue-touch';
 import FastClick from 'fastclick';
 import Rem from './utils/rem';
+
+import router from './router';
+
+import App from './App.vue';
 
 Rem.init();
 FastClick.attach(document.body);
@@ -13,9 +16,4 @@ FastClick.attach(document.body);
 Vue.use(VueResource);
 Vue.use(VueTouch);
 
-new Vue({
-    el: '#app'
-    , components: {
-        app: App
-    }
-});
+router.start(App, "#app");

@@ -43,7 +43,8 @@
         </div>
 
         <v-search :search-open.sync="searchOpen"></v-search>
-        <v-menu :menu-open.sync="menuOpen"></v-menu>
+        <v-menu :user-name.sync="userName" :menu-open.sync="menuOpen" :view.sync="view" :playing-lists.sync="playingLists"></v-menu>
+        <router-view :user-name.sync="userName"></router-view>
     </div>
 </template>
 <style scoped>
@@ -92,6 +93,7 @@
                 , mode: ['loop', 'repeat', 'rand']
                 , currMode: 0
                 , scroll: {}
+                , userName: ""
             };
         }
         , ready: function () {
@@ -113,6 +115,9 @@
             }
 
             !isCurr && (this.currId = s[0].id);
+
+            this.userName = window.localStorage.getItem(ctrl.lsUser);
+            this.userName = this.userName ? decodeURIComponent(this.userName) : "";
         }
         , events: {
             playMusic (id) {
@@ -373,12 +378,19 @@
             , vMenu: Menu
         }
         , watch: {
-            currId: function (val) {
+            currId (val) {
                 this.storage.setItem(ctrl.lsCurr, val);
             }
-            , currMode: function (val) {
+            , currMode (val) {
                 this.storage.setItem(ctrl.lsMode, val);
             }
+            , playingLists (val) {
+                this.storage.setItem(ctrl.lsName, JSON.stringify(val));
+            }
+            , userName (val) {
+                this.storage.setItem(ctrl.lsUser, encodeURIComponent(val));
+            }
         }
+        , replace: false
     };
 </script>

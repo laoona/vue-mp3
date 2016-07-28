@@ -19,6 +19,7 @@ var ctrl = {
     , lsCurr: "__curr__"
     , lsMode: "__mode__"
     , lsSHis: "__his__"
+    , lsUser: "__user__"
     , assign: function (target, arr) {
         if (typeof Object.assign !== 'function') {
             if (target === undefined || target === null) {
@@ -80,6 +81,7 @@ var ctrl = {
 
         return res;
     }
+    , hgzUrl: 'http://www.haozigan.com'
     , url: 'http://192.168.10.240/'
     , url: 'http://page.laoono.com'
 };
