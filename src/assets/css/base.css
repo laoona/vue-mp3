@@ -208,5 +208,23 @@ input:-moz-placeholder, textarea:-moz-placeholder, input::-moz-placeholder, text
   content: "";
 }
 
+.ico-user::after {
+  content: "";
+}
 
+.ico-sync::after {
+  content: "";
+}
+
+.ico-about::after {
+  content: "";
+}
+
+.ico-qrcode::after {
+  content: "";
+}
+
+.ico-exit::after {
+  content: "";
+}
 /*# sourceMappingURL=base.css.map */

@@ -2,16 +2,35 @@
     <section class="menu-page-wrap" v-bind:class="{'menu-page-wrap-show': menuOpen}">
         <div class="menu-page-mask"></div>
         <div class="menu-page">
-            <h3 class="menu-title">菜单</h3>
-
+            <div class="avatar" v-touch:tap="login">
+                <img src="../assets/face1.jpg" alt="" class="avatar-pic" v-bind:style="{opacity: userName ? 1 : 0.7}">
+                <p class="user-name">{{userName ? userName : "立即登录"}}</p>
+            </div>
+            <!--<h3 class="menu-title">二维码</h3>-->
             <div class="menu-center-box">
-                <div class="avatar" v-link="'/login'">
-                    <img src="../assets/face1.jpg" alt="" class="avatar-pic" v-bind:style="{opacity: userName ? 1 : 0.7}">
-                </div>
 
-                <button class="avatar-btn" v-link="'/login'" type="button">{{userName ? userName : "立即登录"}}</button>
-                <button class="avatar-btn" type="button" v-touch:tap="sync">同步歌单</button>
-                <button v-bind:style="{visibility: userName ? 'visible' : 'hidden'}" class="avatar-btn" type="button" v-touch:tap="exit">退出</button>
+                <ul class="menu-items">
+                    <li v-touch:tap="sync">
+                        <i class="ico ico-sync"></i>
+                        同步歌单
+                    </li>
+                    <li v-link="'/qrcode'">
+                        <i class="ico ico-qrcode"></i>
+                        二维码
+                    </li>
+                    <li v-link="'/about'">
+                        <i class="ico ico-about"></i>
+                        关于
+                    </li>
+                    <li v-bind:style="{visibility: userName ? 'visible' : 'hidden'}" v-touch:tap="exit">
+                        <i class="ico ico-exit"></i>
+                        退出
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu-copyr">
+                Gmusic-基佬音乐
             </div>
         </div>
     </section>
@@ -19,6 +38,9 @@
 <style>
     .menu-title {
         font-weight: normal;
+    }
+    .menu-page .avatar-btn {
+        margin: .4rem 0;
     }
 </style>
 <script>
@@ -38,6 +60,12 @@
                 } else {
                     this.syncPost();
                     this.menuOpen = false;
+                }
+            }
+
+            , login () {
+                if (!this.userName.length) {
+                    router.go('/login');
                 }
             }
 
@@ -70,7 +98,7 @@
 
                     if (code == 100) {
                         toast.init("同步成功").destroy();
-                        _me.playingLists = data;
+                        _me.playingLists = data.reverse();
                     }  else if (code == 101) {
                         _me.userName = "";
 

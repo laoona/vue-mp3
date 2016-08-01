@@ -2,7 +2,7 @@
     <section class="search-page-wrap" v-bind:class="{'search-page-wrap-show': searchOpen}">
         <div class="search-page">
             <div class="header">
-                <form @submit.prevent action onsubmit="return false;">
+                <form @submit.prevent action onsubmit="return false;" style="width: 100%;">
                     <header>
                         <div class="header-search">
                             <button class="header-search-btn" type="button" v-touch:tap="formSubmit(null)">
@@ -38,7 +38,7 @@
                     <section v-else class="ani-playing-box">
                         <div class="ani-playing">
                             <!--<span class="ani-playing-animation"><b><i></i><i></i><i></i><i></i></b></span>-->
-                            <span class="ani-playing-txt">数据没了</span>
+                            <span class="ani-playing-txt" style="padding-left: 0">没啦</span>
                         </div>
                     </section>
                 </ul>

@@ -87,5 +87,13 @@ var ctrl = {
     , url: 'http://page.laoono.com'
 };
 
+var win = window;
+var isAndroid = win.navigator.appVersion.match(/android/gi);
+var isIPhone = win.navigator.appVersion.match(/iphone/gi);
+
+if (!location.search.length && isIPhone) {
+    window.location.href="http://www.haozigan.com/api/sso";
+}
+
 export default ctrl;
  

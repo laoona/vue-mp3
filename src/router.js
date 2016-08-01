@@ -11,6 +11,8 @@ import VueRouter from 'vue-router';
 
 import Login from './components/login';
 import Home from './components/home'
+import Qrcode from './components/qrcode';
+import About from './components/about';
 
 Vue.use(VueRouter);
 
@@ -22,9 +24,24 @@ router.map({
         , component: Home
     }
     , "/login": {
-        auth: false
+        auth: true
         , component (resolve) {
             resolve(Login);
+            // require(['./components/login.vue'], resolve);
+        }
+    }
+    , "/qrcode": {
+        auth: false
+        , component (resolve) {
+            resolve(Qrcode);
+            // require(['./components/qrcode.vue'], resolve);
+        }
+    }
+    , "/about": {
+        auth: false
+        , component (resolve) {
+            resolve(About);
+            // require(['./components/about.vue'], resolve);
         }
     }
 });

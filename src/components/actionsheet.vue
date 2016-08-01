@@ -6,7 +6,7 @@
             <div class="list-box-cont" id="js-playlist-scroll" style="overflow: scroll;">
                 <ul class="mod-play-list js-playlist-box">
                     <li v-for="list in playingLists" v-bind:class="{'play-list-item-current': currentListId == list.id}">
-                        <div class="play-list-scroll" v-touch:tap="playMusic(list.id)">
+                        <div class="play-list-scroll" v-touch:tap="playMusic(list.id, $index)">
                             <span class="play-list-song ">{{ list.title }}</span>
                             <b class="play-list-line">-</b>
                             <span class="play-list-singer">{{ list.artists }}</span>
@@ -55,8 +55,8 @@
         }
 
         , methods: {
-            playMusic (id) {
-                this.$dispatch('playMusic', id);
+            playMusic (id, source) {
+                this.$dispatch('playMusic', id, source);
             }
             , swipeDel (index) {
                 this.$dispatch('swipeDel', index);

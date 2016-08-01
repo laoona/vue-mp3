@@ -10,14 +10,14 @@
         <section class="login-fields">
             <div class="login-f-item">
                 <div class="login-f-ribbon">
-                    <input type="text" data-type="text" required class="login-f-input" v-model="user" placeholder="蒿子杆帐号">
+                    <input type="text" data-type="text" required class="login-f-input" v-model="user" placeholder="蒿子杆帐号" @keyup.enter="login">
                     <button v-touch:tap="clear('user')" class="login-f-clear-btn"><i class="ico ico-del"></i></button>
                 </div>
             </div>
 
             <div class="login-f-item">
                 <div class="login-f-ribbon">
-                    <input type="password" data-type="password" required class="login-f-input" v-model="password" placeholder="密码">
+                    <input type="password" data-type="password" required class="login-f-input" v-model="password" placeholder="密码" @keyup.enter="login">
                     <button v-touch:tap="clear('password')"class="login-f-clear-btn"><i class="ico ico-del"></i></button>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <button class="login-f-btn" type="button" v-touch:tap="login">登录</button>
 
             <div class="login-f-footer">
-                <a href="javascript:void(0)" class="login-f-f-link">注册帐号</a><a href="javascript:void(0)" class="login-f-f-link">找回密码</a>
+                <a href="http://www.haozigan.com/reg" class="login-f-f-link">注册帐号</a><a href="http://www.haozigan.com/page/fpw" class="login-f-f-link">找回密码</a>
             </div>
         </section>
     </div>
@@ -313,10 +313,12 @@
                     var code = res.data.code;
 
                     if (code == 100) {
-                        toast.init("登录成功").destroy(function() {
+                        toast.init("登录成功").destroy(function () {
                             _me.userName = name;
                             router.go("/");
                         });
+                    } else if (code == 102) {
+                        toast.init("帐号或密码错误").destroy();
                     } else {
                         toast.init("失败").destroy();
                     }
@@ -327,6 +329,21 @@
 
             , clear (val) {
                 this[val] = "";
+            }
+        }
+
+        , route: {
+            activate: function (t) {
+                var name = window.localStorage.getItem(ctrl.lsUser);
+                var auth = t.to.auth;
+
+                name = name ? decodeURIComponent(name) : "";
+
+                if (auth && name.length) {
+                    router.go("/");
+                } else {
+                    t.next();
+                }
             }
         }
     };

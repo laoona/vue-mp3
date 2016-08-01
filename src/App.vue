@@ -120,8 +120,8 @@
             this.userName = this.userName ? decodeURIComponent(this.userName) : "";
         }
         , events: {
-            playMusic (id) {
-                this.playMusic(id);
+            playMusic (id, source) {
+                this.playMusic(id, source);
             }
             , swipeDel (index) {
                 this.swipeDel(index);
@@ -152,33 +152,30 @@
                     this.isPlay = false;
                 }
             }
-            , playMusic: function (id) {
+            , playMusic: function (id, source) {
                 this.searchOpen = false;
                 this.listOpen = false;
                 this.touchEnabled = true;
                 this.isPlay = false;
 
-                this.$http.get(ctrl.url + '/api/music/', {
-                    params: {
-                        controller: 'detail'
-                        , id: id
-                    }
-                }).then(function (res) {
-                    var music = JSON.parse(res.data).songs[0] || {};
+                source = (source && String(source)) || "";
+
+                var play = function (music, ctx) {
+                    music = music || {};
 
                     var id = music.id
-                            , title = music.name
-                            , url = music.mp3Url
-                            , picUrl = (music.album && music.album.picUrl) || ''
+                            , title = music.name || music.title
+                            , url = music.mp3Url || music.url
+                            , picUrl = (music.album && music.album.picUrl) || music.picUrl || ''
                             , artists;
 
-                    artists = (music.artists && music.artists[0].name) || '';
+                    artists = (music.artists && music.artists[0].name) || music.artists || '';
 
-                    this.playingTitle = title;
-                    this.playingArtist = artists;
-                    this.picUrl = picUrl;
+                    ctx.playingTitle = title;
+                    ctx.playingArtist = artists;
+                    ctx.picUrl = picUrl;
 
-                    var _me = this, audio = _me.audio;
+                    var _me = ctx, audio = _me.audio;
 
                     audio.src = url;
 
@@ -193,14 +190,33 @@
                         , picUrl: picUrl
                         , artists: artists
                     }
-                            , s = this.storage;
+                            , s = ctx.storage;
 
                     var list = ctrl.fillData(data);
 
-                    this.playingLists = list;
-                    this.currId = id;
+                    ctx.playingLists = list;
+                    ctx.currId = id;
                     s.setItem(ctrl.lsName, JSON.stringify(list));
+                };
 
+                var localMusic = this.playingLists || {};
+
+                if (source.length) {
+                    localMusic = localMusic[source];
+                    play(localMusic, this);
+                    return;
+                }
+
+
+                this.$http.get(ctrl.url + '/api/music/', {
+                    params: {
+                        controller: 'detail'
+                        , id: id
+                    }
+                }).then(function (res) {
+                    var music = JSON.parse(res.data).songs[0] || {};
+
+                    play(music, this);
                 }, function (res) {
                 });
             }
