@@ -18,6 +18,10 @@
                         <i class="ico ico-qrcode"></i>
                         二维码
                     </li>
+                    <li v-link="'/share'">
+                        <i class="ico ico-share"></i>
+                        分享到
+                    </li>
                     <li v-link="'/about'">
                         <i class="ico ico-about"></i>
                         关于

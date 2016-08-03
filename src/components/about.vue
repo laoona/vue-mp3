@@ -58,12 +58,32 @@
     }
 
     .about-txt p {
-        font-size: 1.2em;
+        font-size: 16px;
         line-height: 2;
     }
 
+    [data-dpr="2"] .about-txt p {
+        font-size: 32px;
+    }
+
+    [data-dpr="2.5"] .about-txt p {
+        font-size: 40px;
+    }
+
+    [data-dpr="2.75"] .about-txt p {
+        font-size: 34px;
+    }
+
+    [data-dpr="3"] .about-txt p {
+        font-size: 48px;
+    }
+
+    [data-dpr="4"] .about-txt p {
+        font-size: 64px;
+    }
+
     .about-link {
-        color: rgba(255, 255, 255, 1);
+        color: #b64e4e;
     }
 </style>
 

@@ -25,7 +25,7 @@
             <button class="login-f-btn" type="button" v-touch:tap="login">登录</button>
 
             <div class="login-f-footer">
-                <a href="http://www.haozigan.com/reg" class="login-f-f-link">注册帐号</a><a href="http://www.haozigan.com/page/fpw" class="login-f-f-link">找回密码</a>
+                <a href="http://www.haozigan.com/reg" target="_blank" class="login-f-f-link">注册帐号</a><a href="http://www.haozigan.com/page/fpw" target="_blank" class="login-f-f-link">找回密码</a>
             </div>
         </section>
     </div>

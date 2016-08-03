@@ -13,6 +13,7 @@ import Login from './components/login';
 import Home from './components/home'
 import Qrcode from './components/qrcode';
 import About from './components/about';
+import Share from './components/share';
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,13 @@ router.map({
         auth: false
         , component (resolve) {
             resolve(About);
+            // require(['./components/about.vue'], resolve);
+        }
+    }
+    , "/share": {
+        auth: false
+        , component (resolve) {
+            resolve(Share);
             // require(['./components/about.vue'], resolve);
         }
     }
