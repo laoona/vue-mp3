@@ -97,10 +97,10 @@
                 this.isOver = false;
                 query ? (this.sValue = query) : this.pushSearchHistory(this.sValue);
 
-                this.$http.get(ctrl.url + '/api/music/', {
+                this.$http.get(ctrl.url + '/search', {
                     params: {
                         controller: 'search'
-                        , s: this.sValue
+                        , keywords: this.sValue
                     }
                     , before: function () {
                         this.songLists = [];
@@ -108,7 +108,7 @@
                 }).then(function (res) {
                     res = res || {};
 
-                    var _data = JSON.parse(res.data) || {};
+                    var _data = (res.data) || {};
                     this.songCount = _data.result.songCount;
 
                     _data = _data.result.songs || [];
@@ -152,16 +152,16 @@
 
                         _me.isSearching = true;
 
-                        _me.$http.get(ctrl.url + '/api/music/', {
+                        _me.$http.get(ctrl.url + '/search', {
                             params: {
                                 controller: 'search'
-                                , s: _me.sValue
-                                , p: _me.pages
+                                , keywords: _me.sValue
+                                , offset: _me.pages
                             }
                         }).then(function (res) {
                             res = res || {};
 
-                            var _data = JSON.parse(res.data) || {};
+                            var _data = (res.data) || {};
                             _me.songCount = _data.result && _data.result.songCount;
 
                             _data = (_data.result && _data.result.songs) || [];

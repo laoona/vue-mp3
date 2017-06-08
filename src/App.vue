@@ -207,16 +207,36 @@
                     return;
                 }
 
+                var music = {};
 
-                this.$http.get(ctrl.url + '/api/music/', {
+                this.$http.get(ctrl.url + '/music/url', {
                     params: {
                         controller: 'detail'
                         , id: id
                     }
                 }).then(function (res) {
-                    var music = JSON.parse(res.data).songs[0] || {};
 
-                    play(music, this);
+                    console.log(res.data.data[0].url);
+                    music.url = res.data.data[0].url;
+
+                    this.$http.get(ctrl.url + '/song/detail', {
+                        params: {
+                            ids: id
+                        }
+                    }).then(function (res) {
+
+                        res = res || {};
+                        var _data = JSON.parse(res.data);
+                        var songs = _data.songs || [];
+                        var song = songs[0] || {};
+
+                        music.id = song.id;
+                        music.name = song.name;
+                        music.picUrl = song.al.picUrl;
+                        music.artists = song.al.name;
+
+                        play(music, this);
+                    });
                 }, function (res) {
                 });
             }

@@ -11,7 +11,7 @@ var ctrl = {
     defaultMusic: {
         id: 27534134
         , title: "老司机带带我"
-        , url: "http://m2.music.126.net/TKiRf1KDSzS2NwTg9a3yIw==/5674579511013571.mp3"
+        , url: "http://m10.music.126.net/20170608155934/9807fa6d2856893d818ce3cfdc509804/ymusic/543c/1341/14a8/7afa8be4e4f9dfda159ddd65960f2cf9.mp3"
         , picUrl: "http://p3.music.126.net/Z4AP7bE0UuhuBEfXI7G0ag==/3398590442421537.jpg"
         , artists: "群星"
     }
@@ -84,7 +84,7 @@ var ctrl = {
     , hgzUrl: 'http://www.haozigan.com'
     // , hgzUrl: 'http://haozigan.me'
     // , url: 'http://192.168.10.240/'
-    , url: 'http://page.laoono.com'
+    , url: 'http://laoono.com/api/netc'
 };
 
 var win = window;
