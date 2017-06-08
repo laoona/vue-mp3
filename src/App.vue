@@ -233,7 +233,7 @@
                         music.id = song.id;
                         music.name = song.name;
                         music.picUrl = song.al.picUrl;
-                        music.artists = song.al.name;
+                        music.artists = song.ar[0].name;
 
                         play(music, this);
                     });
